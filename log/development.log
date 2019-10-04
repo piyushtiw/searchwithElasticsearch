@@ -1,0 +1,204 @@
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLegislatorIntroducedBills (20191004145933)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "legislator_introduced_bills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "legislator_key" varchar, "legislator_id" varchar, "branch" varchar, "bill_id" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191004145933"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateLegislatorCounties (20191004145958)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "legislator_counties" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "county" varchar, "district" varchar, "legislator_key" varchar, "branch" varchar, "first_name" varchar, "last_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191004145958"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBills (20191004150004)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "bills" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "bill_id" varchar, "alternate_bill_id" varchar, "bill_name" varchar, "bill_text_url" varchar, "bill_summary" text, "branch" varchar, "action_date" datetime, "action_text" varchar, "bill_text" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191004150004"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateLegislators (20191004150019)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "legislators" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "branch" varchar, "legislator_id" varchar, "legislator_key" varchar, "district" integer, "seat" integer, "first_name" varchar, "last_name" varchar, "middle_name" varchar, "spouse" varchar, "address" varchar, "leg_room" varchar, "city" varchar, "state" varchar, "zip" varchar, "tel" varchar, "email" varchar, "party" varchar, "senate_terms" varchar, "house_terms" varchar, "occupation" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20191004150019"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-10-04 15:43:46.006097"], ["updated_at", "2019-10-04 15:43:46.006097"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2019-10-04 11:53:16 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BillsController#index as HTML
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 632)
+[Webpacker] Compiling…
+Started GET "/" for ::1 at 2019-10-04 11:53:19 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BillsController#index as HTML
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 145)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /Users/piyushtiwari/workspace/hackathon/public/packs
+Completed 200 OK in 5791ms (Views: 5782.8ms | ActiveRecord: 0.0ms | Allocations: 1534755)
+
+
+[Webpacker] Compiled all packs in /Users/piyushtiwari/workspace/hackathon/public/packs
+Completed 200 OK in 2481ms (Views: 2479.9ms | ActiveRecord: 0.0ms | Allocations: 8218)
+
+
+Started GET "/bills?title=hlwegifg+78egrufg+378ewui+gf7823yufw7+yuf+vyewuk+fyuejwfs+78duyj&commit=Search" for ::1 at 2019-10-04 11:53:33 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"title"=>"hlwegifg 78egrufg 378ewui gf7823yufw7 yuf vyewuk fyuejwfs 78duyj", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 144)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 4588)
+
+
+Started GET "/bills?title=hlwegifg+78egrufg+378ewui+gf7823yufw7+yuf+vyewuk+fyuejwfs+78duyj&commit=Search" for ::1 at 2019-10-04 11:58:34 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BillsController#index as HTML
+  Parameters: {"title"=>"hlwegifg 78egrufg 378ewui gf7823yufw7 yuf vyewuk fyuejwfs 78duyj", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 378)
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.0ms | Allocations: 5749)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 11:58:42 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 133)
+Completed 200 OK in 11ms (Views: 10.4ms | ActiveRecord: 0.0ms | Allocations: 4590)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 11:58:50 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 368)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.0ms | Allocations: 5761)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 11:59:14 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.0ms | Allocations: 371)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.0ms | Allocations: 5762)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 11:59:16 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 133)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 4587)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 11:59:31 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 376)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.0ms | Allocations: 5773)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 12:01:27 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 374)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.0ms | Allocations: 5767)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 12:01:40 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 374)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.0ms | Allocations: 5762)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 12:01:52 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.7ms | Allocations: 374)
+Completed 200 OK in 11ms (Views: 9.1ms | ActiveRecord: 0.0ms | Allocations: 5764)
+
+
+Started GET "/bills?query=sjhkabfdgb&commit=Search" for ::1 at 2019-10-04 12:01:54 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"sjhkabfdgb", "commit"=>"Search"}
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 133)
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.0ms | Allocations: 4593)
+
+
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBill Create (1.3ms)[0m  [1m[32mINSERT INTO "bills" ("bill_id", "bill_name", "bill_summary", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bill_id", "H-234"], ["bill_name", "wjshgure"], ["bill_summary", "fish off"], ["created_at", "2019-10-04 17:39:30.276257"], ["updated_at", "2019-10-04 17:39:30.276257"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[33mBill Store (327.9ms)[0m  {"id":1}
+Started GET "/" for ::1 at 2019-10-04 14:10:30 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BillsController#index as HTML
+  [1m[33mBill Search (157.1ms)[0m  curl http://localhost:9200/bills_development/_search?pretty -H 'Content-Type: application/json' -d '{"query":{"bool":{"should":[{"dis_max":{"queries":[{"multi_match":{"query":"","boost":10,"operator":"and","analyzer":"searchkick_search","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":10,"operator":"and","analyzer":"searchkick_search2","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":1,"operator":"and","analyzer":"searchkick_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":1,"operator":"and","analyzer":"searchkick_search2","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}}]}}]}},"timeout":"11s","_source":false,"size":10000}'
+Completed 500 Internal Server Error in 226ms (Searchkick: 157.1ms | ActiveRecord: 0.0ms | Allocations: 6084)
+
+
+  
+Searchkick::InvalidQueryError (Bad mapping - run Bill.reindex):
+  
+app/controllers/bills_controller.rb:6:in `index'
+Started GET "/" for ::1 at 2019-10-04 14:27:30 -0400
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BillsController#index as HTML
+  [1m[33mBill Search (35.1ms)[0m  curl http://localhost:9200/bills_development/_search?pretty -H 'Content-Type: application/json' -d '{"query":{"bool":{"should":[{"dis_max":{"queries":[{"multi_match":{"query":"","boost":10,"operator":"and","analyzer":"searchkick_search","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":10,"operator":"and","analyzer":"searchkick_search2","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":1,"operator":"and","analyzer":"searchkick_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"","boost":1,"operator":"and","analyzer":"searchkick_search2","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}}]}}]}},"timeout":"11s","_source":false,"size":10000}'
+Completed 500 Internal Server Error in 53ms (Searchkick: 35.1ms | ActiveRecord: 0.0ms | Allocations: 6084)
+
+
+  
+Searchkick::InvalidQueryError (Bad mapping - run Bill.reindex):
+  
+app/controllers/bills_controller.rb:6:in `index'
+Started GET "/" for ::1 at 2019-10-04 14:28:20 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BillsController#index as HTML
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 413)
+Completed 200 OK in 970ms (Views: 967.6ms | ActiveRecord: 0.0ms | Allocations: 1520073)
+
+
+Started GET "/bills?query=yo&commit=Search" for ::1 at 2019-10-04 14:30:19 -0400
+Processing by BillsController#index as HTML
+  Parameters: {"query"=>"yo", "commit"=>"Search"}
+  [1m[33mBill Search (25.9ms)[0m  curl http://localhost:9200/bills_development/_search?pretty -H 'Content-Type: application/json' -d '{"query":{"bool":{"should":[{"dis_max":{"queries":[{"multi_match":{"query":"yo","boost":10,"operator":"and","analyzer":"searchkick_search","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"yo","boost":10,"operator":"and","analyzer":"searchkick_search2","fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"yo","boost":1,"operator":"and","analyzer":"searchkick_search","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}},{"multi_match":{"query":"yo","boost":1,"operator":"and","analyzer":"searchkick_search2","fuzziness":1,"prefix_length":0,"max_expansions":3,"fuzzy_transpositions":true,"fields":["*.analyzed"],"type":"best_fields"}}]}}]}},"timeout":"11s","_source":false,"size":10000}'
+Completed 500 Internal Server Error in 41ms (Searchkick: 25.9ms | ActiveRecord: 0.0ms | Allocations: 7970)
+
+
+  
+Searchkick::InvalidQueryError (Bad mapping - run Bill.reindex):
+  
+app/controllers/bills_controller.rb:5:in `index'
+Started GET "/" for ::1 at 2019-10-04 14:30:23 -0400
+Processing by BillsController#index as HTML
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 132)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.0ms | Allocations: 4607)
+
+
+Started GET "/" for ::1 at 2019-10-04 14:45:36 -0400
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BillsController#index as HTML
+  Rendering bills/index.html.erb within layouts/application
+  Rendered bills/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 699)
+Completed 200 OK in 981ms (Views: 970.3ms | ActiveRecord: 0.0ms | Allocations: 1521919)
+
+

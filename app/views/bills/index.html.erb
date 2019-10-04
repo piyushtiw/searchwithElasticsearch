@@ -1,0 +1,21 @@
+<h4>Search:</h4>
+<div style="width: 900px;">
+  <%= form_tag(bills_path, method: :get) do %>
+    <label>Query</label>
+    <%= text_field_tag(:query, params[:query]) %>
+    <%= submit_tag("Search", :class=>"waves-effect waves-light btn") %>
+  <% end %>
+</div>
+
+<% if @query.present? %>
+<div>
+  <h6>Query:</h6>
+  <%= @query %>
+</div>
+
+<div>
+  <h6>Result:</h6>
+  <%= @result.summary %>
+</div>
+<% end %>
+

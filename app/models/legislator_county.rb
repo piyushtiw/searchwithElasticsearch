@@ -1,0 +1,2 @@
+class LegislatorCounty < ApplicationRecord
+end
