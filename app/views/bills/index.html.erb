@@ -1,21 +1,105 @@
-<h4>Search:</h4>
-<div style="width: 900px;">
-  <%= form_tag(bills_path, method: :get) do %>
-    <label>Query</label>
-    <%= text_field_tag(:query, params[:query]) %>
-    <%= submit_tag("Search", :class=>"waves-effect waves-light btn") %>
-  <% end %>
-</div>
+<div class="row">
+  <div class="column2" style="background-color: white;">
+    <% if @bill.present? %>
+      <div>Bill Id: <%= @bill.bill_id %></div>
 
-<% if @query.present? %>
-<div>
-  <h6>Query:</h6>
-  <%= @query %>
-</div>
+      <div>Bill Title: <a href=<%= @bill.bill_name %>> <%= @bill_name %> </a></div>
+    <% end %>
 
-<div>
-  <h6>Result:</h6>
-  <%= @result.summary %>
+
+    <% if @result.present? %>
+      <div class="row">
+        <h3> SIMILLAR BILLS </h3>
+
+        <% @result.each do |bill| %>
+          <div>Bill Id: <%= bill.bill_id %></div>
+
+          <div>Bill Url: <a href=<%= bill.bill_name %>> <%= bill.bill_name %> </a></div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="column1" style="background-color:#bbb;">
+
+      <div id="live-chat">
+        
+        <header class="clearfix">
+          
+          <a href="#" class="chat-close">x</a>
+
+          <h4>Lexis Nexis</h4>
+
+          <span class="chat-message-counter">3</span>
+
+        </header>
+
+        <div class="chat">
+          
+          <div class="chat-history">
+
+            <% if @query.present? %>
+
+              <div class="chat-message clearfix">
+                  
+                  <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+
+                  <div class="chat-message-content clearfix">
+                    
+
+                    <h5>You</h5>
+
+                    <p>
+                      <%= @query %>
+                    </p>
+
+                  </div> <!-- end chat-message-content -->
+
+                </div>
+
+              <% end %>
+
+            <hr>
+
+            <% if @query.present? %>
+              <div class="chat-message clearfix">
+                
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAoCAMAAAArH/PVAAAAolBMVEX////oFx8AAADnAAD29vapqamRkZH8/PwsLCyKiooiIiK4uLjDw8O+vr4GBgbf39/oChXs7OzKysqioqLW1tbQ0NDl5eWxsbH62dn0pab+9/f50dLrTVAYGBg4ODh1dXX97u7sWFv3wcLtY2bykZLveHr1rq/85ebympvqNztqampTU1MRERH1tbb4yMh+fn5dXV1CQkLpJSvwhojqQEXubnHjxuq1AAAEgUlEQVRYhe2YeXOqShDFmx4E3B6LG4gL7ltMIur3/2rv9IAKxntTr+rV5f6RU2UcZJYfp3saCNGPfvSHFEar2Wi22sZ21SQPJctUKU+kVHreVI2TaXj2dpedATBDpNR5WDUSlMw3wzAOw3A9ApinvFSlYdVQRJuz4Z2PcRwntFmoxXG9VJ6aV011VauE4uUqirPQJet1pAz1Lu2gVxHU0JsRLdUspPc5sNaXhOZRiiRTSPyg3nSrwRodaa0uG9pewiSmBbZjGK+iK3JsR9RrN/1KqI7vQNnSuzpTFNk7ZRieN9+elWzIiKjbz/uZ++nvJ7L3+0LBs617s/c5+NWY9qH5i8liGiG7l+pI1y3tdIHwRtF5Ji2vsI7JjW+w3tgsHHHnvjZbr/qLOo9eWKF06gqqFagWCzSNrG5tR5oPvxawnN9jkVmc12a+efQbLNt8XHiz0y6cWaslbfE5KzrmVFDW9Bb/Bau8IDM3v8UqatApBHSIxI7VCLk1p/RO5V2zcu89iv0TVj/oZt/5WVy1rzeHH7gZ1njMrRKW2Qt0j5urGGr6ut0N8BW0C7VojfKUohSAbv0wy/DyaD5qfQkrcGCGRGmQWzJxbHpjNPb43XE1ls8cFLA+ZMinSbYz0UNaGN+W3OrJiXrZutGFInXFZ00Xz3hWodQXsdrMnVbtjWvkv7GY8ynTO9gTFu+DDncF6x/qsrRyrBN/tttTZht5vsexy+wDrYaJudk67EtUQ2R1Ck88NdyoL1QGYF9gmTzW3jew9foye50/KMM6cJ7DgkUBC7TGsjLLBmLLB/7Ayj5pLPfZKShRSawuNFezYsJ/g9XJI9eUMPbY6fCBcqwM8IaFZbG4xrqN1pGGuRPuEd3c6j5jbVKUrAgFYovvF1gvgzjlm/Yajk90w7KRdFP3jgV32G8Bq38fIiYhotmVCZb0mdTKj57JjGaIoay/+JpahopfYe35o54Jk0qSTO9YRLUJizs5FtW4UcOxyxMrG/LRzy7MvWORi8Nxnwqyz7RTtq2ANnuFlbzCsvKdr4Uk2Wd54+S3ga6DqNywEHHBtHlSWNXiT0nJGxYw6lke3HUkw6CNQol4geWNHh0LWC472nOZ2HRQBU66oguWrkk1LHbHAoNQT3OA7PwBu6Fh51jaNx6XwphQuqNQsK4v6sO2iNUY1LR6SOxJy3f15jrIxHZDKhSwzPGka7qnoluy8SwZznXXbx1gUsCOKRl1yrAQY9+sPbmFypWKW+GrlC/EUObNVdcOQI0eQlTPI2nTmLOQ5bnF96F76dOf6FNT286yHnN0dDn1T/L7Wym3INwMhwopP/+CpVaFbnbzJtnO/sCydAnP78ddqU9yq/Vr9Y6OyqBwh8sKQM+yBrK4m9cD2NwfSN/AstpfXgJDeOIhXMlXrEpff3ZzPNHgWeE55yt+yQhnCCCceS/bhcfVahXJPREPyKOiXaXEqkYhbogp7kQPu7xibahQZ+GI85d9T+3+gpdqrUgyfHNReJ9Wl+P3/f+Ukkj+TxNvV9u/xakf/eh/1b+RzUwLYagIpQAAAABJRU5ErkJggg==" alt="" width="50" height="64">
+
+                <div class="chat-message-content clearfix">
+                  
+                  <span class="chat-time">few seconds ago</span>
+
+                  <h5>Lexis Nexis</h5>
+
+                  <p>
+                    <% if @answer.present? %>
+                      <%= @answer %>
+                    <% else %>
+                      Sorry, No result found.
+                    <% end %>
+                  </p>
+
+                </div> <!-- end chat-message-content -->
+
+              </div> <!-- end chat-message -->
+            <% end %>
+
+            <hr>
+
+          </div> <!-- end chat-history -->
+
+          <%= form_tag(bills_path, method: :get) do %>
+            <%= text_field_tag(:query, params[:query]) %>
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+              <div style="display: inline-block; vertical-align: middle;"><a class="left button-text right send-message" style="text-decoration: none; z-index: 100; cursor: pointer; width: 48px; height: 48px; margin: 8px; flex: 1 1 0%; display: flex; align-items: center; text-align: center; box-shadow: rgba(25, 75, 103, 0.51) 0px 0px 2px 0px, rgba(139, 139, 139, 0.57) 0px 4px 4px 0px; border-radius: 50%; background-color: rgb(255, 255, 255);"><div style="background-color: rgb(255, 255, 255); height: 48px; width: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><div class="svg-image"><svg width="25" height="24" viewBox="0 0 25 24" xmlns="http://www.w3.org/2000/svg" style="display: flex;"><g id="Symbols" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g id="Text-input" transform="translate(-353 -12)" stroke="#184A68" stroke-width="1.5"><g id="Group-3"><g id="Group-5" transform="translate(354 13)"><g id="Group-6"><polygon id="Path-4" points="0 0 6.7550151 10 23 10"></polygon><polygon id="Path-4" points="0 22 6.7550151 12 23 12"></polygon></g></g></g></g></g></svg></div></div></a></div>
+            <% end %>
+          <% end %>
+
+        </div> <!-- end chat -->
+
+      </div> <!-- end live-chat -->
+
+  </div>
 </div>
-<% end %>
 

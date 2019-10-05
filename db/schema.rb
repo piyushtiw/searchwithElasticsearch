@@ -17,11 +17,13 @@ ActiveRecord::Schema.define(version: 2019_10_04_150019) do
     t.string "alternate_bill_id"
     t.string "bill_name"
     t.string "bill_text_url"
-    t.text "bill_summary"
+    t.string "bill_summary_url"
+    t.string "bill_sponsor"
     t.string "branch"
     t.datetime "action_date"
     t.string "action_text"
     t.text "bill_text"
+    t.text "bill_summary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
